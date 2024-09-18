@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
@@ -22,6 +22,8 @@ import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
+
+export {avatar};
 
 export const gridOrderImage: FC<{ProductImage:string}> = (props) => (
   <div>

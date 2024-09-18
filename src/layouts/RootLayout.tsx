@@ -1,9 +1,8 @@
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-import { useContext, useEffect } from "react";
 import { FiSettings } from "react-icons/fi";
-import { BrowserRouter, Outlet } from "react-router-dom";
+import {Outlet } from "react-router-dom";
 import { Sidebar, Navbar, Footer } from "../components";
-import { StateContext } from "../context/ContextProvider";
+import { useStateContext } from "../context/ContextProvider";
 
 const RootLayout = () => {
   // const {
@@ -25,8 +24,7 @@ const RootLayout = () => {
   //   }
   // }, []);
 
-  // const { activeMenu, setActiveMenu } = useStateContext();
-  const { activeMenu, setActiveMenu } = useContext(StateContext);
+  const { activeMenu } = useStateContext();
   let currentMode = "White"
 
   return (
