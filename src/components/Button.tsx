@@ -1,10 +1,31 @@
+import { FC } from 'react';
 
-const Button = () => {
+import { useStateContext } from '../context/ContextProvider';
+
+interface ButtonPropType {
+  icon?: string;
+  bgColor?: string;
+  color?: string;
+  bgHoverColor?: string;
+  size?: string;
+  text?: string;
+  borderRadius?: string;
+  width?: string;
+}
+
+const Button:FC<ButtonPropType> = ({ icon, bgColor, color, bgHoverColor, size, text, borderRadius, width }) => {
+  const { setIsClicked, initialState } = useStateContext();
+
   return (
-    <div>
-      Button
-    </div>
-  )
+    <button
+      type="button"
+      onClick={() => setIsClicked(initialState)}
+      style={{ backgroundColor: bgColor, color, borderRadius }}
+      className={` text-${size} p-3 w-${width} hover:drop-shadow-xl hover:bg-${bgHoverColor}`}
+    >
+      {icon} {text}
+    </button>
+  );
 };
 
-export default Button
+export default Button;
