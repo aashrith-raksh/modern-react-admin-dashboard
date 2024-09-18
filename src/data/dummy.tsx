@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
@@ -23,7 +23,7 @@ import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
 
-export const gridOrderImage = (props) => (
+export const gridOrderImage: FC<{ProductImage:string}> = (props) => (
   <div>
     <img
       className="rounded-xl h-20 md:ml-3"
@@ -33,7 +33,7 @@ export const gridOrderImage = (props) => (
   </div>
 );
 
-export const gridOrderStatus = (props) => (
+export const gridOrderStatus:FC<{StatusBg:string, Status:string}> = (props) => (
   <button
     type="button"
     style={{ background: props.StatusBg }}
@@ -61,7 +61,7 @@ export const kanbanGrid = [
     keyField: 'Close',
     allowToggle: true },
 ];
-const gridEmployeeProfile = (props) => (
+const gridEmployeeProfile: FC<{EmployeeImage:string, Name:string}> = (props) => (
   <div className="flex items-center gap-2">
     <img
       className="rounded-full w-10 h-10"
@@ -72,7 +72,7 @@ const gridEmployeeProfile = (props) => (
   </div>
 );
 
-const gridEmployeeCountry = (props) => (
+const gridEmployeeCountry:FC<{Country:string}> = (props) => (
   <div className="flex items-center justify-center gap-2">
     <GrLocation />
     <span>{props.Country}</span>
@@ -120,7 +120,7 @@ export const EditorData = () => (
     </h3>
   </div>
 );
-const customerGridImage = (props) => (
+const customerGridImage: FC<{CustomerImage:string, CustomerName:string, CustomerEmail:string}> = (props) => (
   <div className="image flex gap-4">
     <img
       className="rounded-full w-10 h-10"
@@ -134,7 +134,7 @@ const customerGridImage = (props) => (
   </div>
 );
 
-const customerGridStatus = (props) => (
+const customerGridStatus: FC<{StatusBg:string, Status:string}> = (props) => (
   <div className="flex gap-2 justify-center items-center text-gray-700 capitalize">
     <p style={{ background: props.StatusBg }} className="rounded-full h-3 w-3" />
     <p>{props.Status}</p>
