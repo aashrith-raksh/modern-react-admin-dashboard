@@ -35,7 +35,14 @@ const RootLayout = () => {
     if (messageBar) {
         messageBar.remove();
     }
+
+    const popup = document.querySelector('div[style*="position: fixed"]'); // Example query for fixed-position popups
+    if (popup) {
+      popup.remove();
+    }
 }, []);
+
+
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
