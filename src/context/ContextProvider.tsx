@@ -30,6 +30,7 @@ type StateContextType = {
   screenSize?: number;
   setScreenSize: React.Dispatch<React.SetStateAction<number | undefined>>;
   handleClick: (key: InitialStateKey) => void;
+  initialState:any;
 };
 
 interface InitialStateType {
@@ -68,6 +69,8 @@ export const StateContext = createContext<StateContextType>({
   setThemeSetting: () => {},
 
   handleClick: () => {},
+  initialState:{}
+  
 });
 
 export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -128,6 +131,7 @@ export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setMode,
     setCurrentMode,
     currentMode,
+    initialState
   };
 
   return (
