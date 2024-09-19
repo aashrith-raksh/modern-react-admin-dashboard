@@ -2,7 +2,6 @@ import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import { Pie, Stacked } from "./components";
 import {
   Ecommerce,
   Orders,
@@ -14,9 +13,8 @@ import {
   ColorPicker,
   Line,
   Area,
+  Pie,
   Bar,
-  Financial,
-  ColorMapping,
   Pyramid,
 } from "./pages";
 
@@ -44,10 +42,7 @@ const router = createBrowserRouter([
       { path: "/area", element: <Area /> },
       { path: "/bar", element: <Bar /> },
       { path: "/pie", element: <Pie /> },
-      { path: "/financial", element: <Financial /> },
-      { path: "/color-mapping", element: <ColorMapping /> },
       { path: "/pyramid", element: <Pyramid /> },
-      { path: "/stacked", element: <Stacked /> },
     ],
   },
 ]);
