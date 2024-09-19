@@ -7,7 +7,7 @@ import { links } from "../data/dummy";
 import { useStateContext } from "../context/ContextProvider";
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   const handleCloseSideBar = () => {
     if (activeMenu !== undefined && screenSize && screenSize <= 900) {
@@ -39,7 +39,7 @@ const Sidebar = () => {
                 onClick={() => {
                   setActiveMenu(!activeMenu);
                 }}
-                // style={/*{ color: currentColor }*/}
+                style={{ color: currentColor }}
                 className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 block md:hidden"
               >
                 <MdOutlineCancel />
@@ -59,7 +59,7 @@ const Sidebar = () => {
                     key={link.name}
                     onClick={handleCloseSideBar}
                     style={({ isActive }) => ({
-                      // backgroundColor: isActive ? currentColor : '',
+                      backgroundColor: isActive ? currentColor : '',
                     })}
                     className={({ isActive }) =>
                       isActive ? activeLink : normalLink
@@ -80,7 +80,3 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-/*
-1. get currentCOlor from context
-2. 
-*/

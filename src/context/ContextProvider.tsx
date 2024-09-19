@@ -1,10 +1,32 @@
-import { createContext, FC, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type StateContextType = {
   activeMenu: boolean;
-  isClicked: InitialStateType;
   setActiveMenu: React.Dispatch<React.SetStateAction<boolean>>;
+
+  isClicked: InitialStateType;
   setIsClicked: React.Dispatch<React.SetStateAction<InitialStateType>>;
+
+  currentColor: string;
+  setCurrentColor: React.Dispatch<React.SetStateAction<string>>;
+
+  setColor: (color: string) => void;
+
+  currentMode: string;
+  setCurrentMode: React.Dispatch<React.SetStateAction<string>>;
+  setMode: (e: ChangeEvent<HTMLInputElement>) => void;
+
+  themeSetting: boolean;
+  setThemeSetting: React.Dispatch<React.SetStateAction<boolean>>;
+
   screenSize?: number;
   setScreenSize: React.Dispatch<React.SetStateAction<number | undefined>>;
   handleClick: (key: InitialStateKey) => void;
@@ -31,8 +53,20 @@ export const StateContext = createContext<StateContextType>({
   setActiveMenu: () => {},
   isClicked: initialState,
   setIsClicked: () => {},
-  screenSize:undefined,
+  screenSize: undefined,
   setScreenSize: () => {},
+  currentColor: "",
+  setCurrentColor: () => {},
+  setColor: () => {},
+
+  currentMode: "",
+  setCurrentMode: () => {},
+
+  setMode: () => {},
+
+  themeSetting: false,
+  setThemeSetting: () => {},
+
   handleClick: () => {},
 });
 
@@ -40,19 +74,34 @@ export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(true);
   const [isClicked, setIsClicked] = useState(initialState);
   const [screenSize, setScreenSize] = useState<number | undefined>(undefined);
+  const [currentColor, setCurrentColor] = useState("#03C9D7");
+  const [currentMode, setCurrentMode] = useState("Light");
+  const [themeSetting, setThemeSetting] = useState(false);
 
   const handleClick = (key: InitialStateKey): void => {
     setIsClicked({ ...initialState, [key]: true });
   };
 
+  const setMode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCurrentMode(e.target.value);
+    localStorage.setItem("themeMode", e.target.value);
+    setThemeSetting(false);
+  };
+
+  const setColor = (color: string) => {
+    setCurrentColor(color);
+    localStorage.setItem("colorMode", color);
+    setThemeSetting(false);
+  };
+
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -63,7 +112,6 @@ export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [screenSize]);
 
-
   const contextValue: StateContextType = {
     activeMenu,
     setActiveMenu,
@@ -72,6 +120,14 @@ export const ContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
     screenSize,
     setScreenSize,
     handleClick,
+    currentColor,
+    setCurrentColor,
+    setColor,
+    themeSetting,
+    setThemeSetting,
+    setMode,
+    setCurrentMode,
+    currentMode,
   };
 
   return (

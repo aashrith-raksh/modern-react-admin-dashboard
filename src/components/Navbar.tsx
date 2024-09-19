@@ -23,8 +23,7 @@ interface NavButtonType {
  
  const Navbar = () => {
 
-  const {activeMenu, setActiveMenu, handleClick, isClicked} = useStateContext();
-  const currentColor = "blue";  //later this will be coming from the context
+  const {activeMenu, setActiveMenu, handleClick, isClicked, currentColor} = useStateContext();
 
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
@@ -87,5 +86,4 @@ interface NavButtonType {
 
  /*
  1. set proper types for icon prop
- 2. remove delcration for currentColor from here and add it toe te context
  */

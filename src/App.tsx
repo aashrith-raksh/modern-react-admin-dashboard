@@ -1,4 +1,3 @@
-import { useRef, useState } from "react";
 import "./App.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -54,32 +53,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    // <BrowserRouter>
-    // <div className="flex relative dark:bg-main-dark-bg">
-    // <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-    //         <TooltipComponent
-    //           content="Settings"
-    //           position="Top"
-    //         >
-    //           <button
-    //             type="button"
-    //             // onClick={() => setThemeSettings(true)}
-    //             // style={{ background: currentColor, borderRadius: '50%' }}
-    //             className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray bg-black"
-    //           >
-    //             <FiSettings />
-    //           </button>
-
-    //         </TooltipComponent>
-    //       </div>
-
-    // </div>
-
-    // </BrowserRouter>
-
     <RouterProvider router={router}></RouterProvider>
   );
 }

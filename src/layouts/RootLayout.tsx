@@ -1,31 +1,41 @@
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { FiSettings } from "react-icons/fi";
-import {Outlet } from "react-router-dom";
-import { Sidebar, Navbar, Footer } from "../components";
+import { Outlet } from "react-router-dom";
+import { Sidebar, Navbar, Footer, ThemeSettings } from "../components";
 import { useStateContext } from "../context/ContextProvider";
+import { useEffect } from "react";
 
 const RootLayout = () => {
-  // const {
-  //   setCurrentColor,
-  //   setCurrentMode,
-  //   currentMode,
-  //   activeMenu,
-  //   currentColor,
-  //   themeSettings,
-  //   setThemeSettings,
-  // } = useStateContext();
+  const {
+    activeMenu,
+    themeSetting,
+    setThemeSetting,
+    currentMode,
+    currentColor,
+    setCurrentColor,
+    setCurrentMode,
+  } = useStateContext();
 
-  // useEffect(() => {
-  //   const currentThemeColor = localStorage.getItem("colorMode");
-  //   const currentThemeMode = localStorage.getItem("themeMode");
-  //   if (currentThemeColor && currentThemeMode) {
-  //     setCurrentColor(currentThemeColor);
-  //     setCurrentMode(currentThemeMode);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const currentThemeColor = localStorage.getItem("colorMode");
+    const currentThemeMode = localStorage.getItem("themeMode");
+    if (currentThemeColor && currentThemeMode) {
+      setCurrentColor(currentThemeColor);
+      setCurrentMode(currentThemeMode);
+    }
+  }, []);
 
-  const { activeMenu } = useStateContext();
-  let currentMode = "White"
+  useEffect(() => {
+    const messageBar = Array.from(document.querySelectorAll("div")).find(
+      (el) =>
+        el.innerText.includes(
+          "This application was built using a trial version of Syncfusion Essential Studio. To remove the license validation message permanently, a valid license key must be included."
+        ) 
+    );
+    if (messageBar) {
+        messageBar.remove();
+    }
+}, []);
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
@@ -37,8 +47,8 @@ const RootLayout = () => {
           >
             <button
               type="button"
-              // onClick={() => setThemeSettings(true)}
-              // style={{ background: currentColor, borderRadius: "50%" }}
+              onClick={() => setThemeSetting(true)}
+              style={{ background: currentColor, borderRadius: "50%" }}
               className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
             >
               <FiSettings />
@@ -65,7 +75,7 @@ const RootLayout = () => {
             <Navbar />
           </div>
           <div>
-            {/* {themeSettings && (<ThemeSettings />)} */}
+            {themeSetting && <ThemeSettings />}
 
             <Outlet />
           </div>
