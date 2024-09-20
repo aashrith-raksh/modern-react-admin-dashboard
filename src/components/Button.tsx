@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { useStateContext } from '../context/ContextProvider';
 
 interface ButtonPropType {
-  icon?: string;
+  icon?: ReactNode;
   bgColor?: string;
   color?: string;
   bgHoverColor?: string;
