@@ -1,6 +1,6 @@
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 import { FiSettings } from "react-icons/fi";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Sidebar, Navbar, Footer, ThemeSettings } from "../components";
 import { useStateContext } from "../context/ContextProvider";
 import { useEffect } from "react";
@@ -26,28 +26,28 @@ const RootLayout = () => {
   }, []);
 
   useEffect(() => {
-    const messageBar = Array.from(document.querySelectorAll("div")).find(
-      (el) =>
-        el.innerText.includes(
-          "This application was built using a trial version of Syncfusion Essential Studio. To remove the license validation message permanently, a valid license key must be included."
-        ) 
+    const messageBar = Array.from(document.querySelectorAll("div")).find((el) =>
+      el.innerText.includes(
+        "This application was built using a trial version of Syncfusion Essential Studio. To remove the license validation message permanently, a valid license key must be included."
+      )
     );
     if (messageBar) {
-        messageBar.remove();
+      messageBar.remove();
     }
+  }, []);
 
+  const location = useLocation();
+
+  useEffect(() => {
     const popup = document.querySelector('div[style*="position: fixed"]');
     if (popup) {
       popup.remove();
     }
-}, []);
-
-
+  }, [location]);
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <div className="flex relative dark:bg-main-dark-bg">
-
         {/* SETTINGS ICON - RIGHT BOTTOM */}
         <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent
@@ -65,7 +65,6 @@ const RootLayout = () => {
           </TooltipComponent>
         </div>
 
-
         {/* SIDEBAR  */}
         {activeMenu ? (
           <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
@@ -77,9 +76,8 @@ const RootLayout = () => {
           </div>
         )}
 
-
         <div
-        id="navbar-container"
+          id="navbar-container"
           className={
             activeMenu
               ? "dark:bg-main-dark-bg  bg-main-bg  min-h-screen  w-full md:ml-72  "
