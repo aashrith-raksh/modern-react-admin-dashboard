@@ -5,21 +5,24 @@ import {
   SparklineTooltip,
 } from "@syncfusion/ej2-react-charts";
 
-class SparkLine extends React.PureComponent<{
-  id:string;
-  height:string;
-  width:string;
-  color:string;
-  data:any;
-  type:string;
-  currentColor:string;
-}> {
+interface SparkLineProps {
+  id: string;
+  height: string;
+  width: string;
+  color: string;
+  data: any;
+  type: string;
+  currentColor: string;
+}
+
+class SparkLine extends React.PureComponent<SparkLineProps> {
   render() {
     const { id, height, width, color, data, type, currentColor } = this.props;
 
     return (
       <SparklineComponent
-        id={id}
+      id={id}
+      //@ts-ignore
         height={height}
         width={width}
         lineWidth={1}
@@ -28,7 +31,6 @@ class SparkLine extends React.PureComponent<{
         border={{ color: currentColor, width: 2 }}
         tooltipSettings={{
           visible: true,
-          // eslint-disable-next-line no-template-curly-in-string
           format: "${x} : data ${yval}",
           trackLineSettings: {
             visible: true,

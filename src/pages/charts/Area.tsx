@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, DateTime, SplineAreaSeries, Legend } from '@syncfusion/ej2-react-charts';
 
 import { Header } from '../../components';
@@ -14,6 +13,7 @@ const Area = () => {
       <div className="w-full">
         <ChartComponent
           id="charts"
+          //@ts-ignore
           primaryXAxis={areaPrimaryXAxis}
           primaryYAxis={areaPrimaryYAxis}
           chartArea={{ border: { width: 0 } }}

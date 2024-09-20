@@ -10,6 +10,7 @@ const Stacked:FC<{ width:string, height:string }> = ({ width, height }) => {
   return (
     <ChartComponent
       id="charts"
+      //@ts-ignore
       primaryXAxis={stackedPrimaryXAxis}
       primaryYAxis={stackedPrimaryYAxis}
       width={width}

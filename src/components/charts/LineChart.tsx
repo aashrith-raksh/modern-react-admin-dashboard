@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ChartComponent,
   SeriesCollectionDirective,
@@ -24,7 +23,9 @@ const LineChart = () => {
     <ChartComponent
       id="line-chart"
       height="420px"
-      primaryXAxis={LinePrimaryXAxis}
+      //@ts-ignore
+      primaryXAxis={LinePrimaryXAxis}  
+      //@ts-ignore
       primaryYAxis={LinePrimaryYAxis}
       chartArea={{ border: { width: 0 } }}
       tooltip={{ enable: true }}
