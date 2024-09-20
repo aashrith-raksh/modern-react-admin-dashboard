@@ -36,7 +36,7 @@ const RootLayout = () => {
         messageBar.remove();
     }
 
-    const popup = document.querySelector('div[style*="position: fixed"]'); // Example query for fixed-position popups
+    const popup = document.querySelector('div[style*="position: fixed"]');
     if (popup) {
       popup.remove();
     }
@@ -47,6 +47,8 @@ const RootLayout = () => {
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
       <div className="flex relative dark:bg-main-dark-bg">
+
+        {/* SETTINGS ICON - RIGHT BOTTOM */}
         <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
           <TooltipComponent
             content="Settings"
@@ -62,6 +64,9 @@ const RootLayout = () => {
             </button>
           </TooltipComponent>
         </div>
+
+
+        {/* SIDEBAR  */}
         {activeMenu ? (
           <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
             <Sidebar />
@@ -71,11 +76,14 @@ const RootLayout = () => {
             <Sidebar />
           </div>
         )}
+
+
         <div
+        id="navbar-container"
           className={
             activeMenu
-              ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  "
-              : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
+              ? "dark:bg-main-dark-bg  bg-main-bg  min-h-screen  w-full md:ml-72  "
+              : "dark:bg-main-dark-bg  bg-main-bg  min-h-screen  w-full flex-2 "
           }
         >
           <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
